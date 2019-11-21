@@ -12,6 +12,7 @@ class Config:
     REDIS_HOST = ""
     REDIS_PORT = ""
 
+    # Session配置
     SESSION_TYPE = ""
     SESSION_REDIS = redis.StrictRedis(host="", port=6379)
     SESSION_USE_SIGNER = True

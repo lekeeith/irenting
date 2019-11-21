@@ -1,24 +1,12 @@
-
-
-from flask_session import Session
-from flask_wtf import CSRFProtect
-
-import redis
-
-
-
-
-
+from ihome import create_app, db
+from flask_script import Manager
+from flask_migrate import Migrate, MigrateCommand
 
 app = create_app(1)
 
-
-redis_store = redis.StrictRedis()
-
-#
-Session(app)
-
-CSRFProtect(app)
+manager = Manager(app)
+Migrate(app, db)
+manager.add_command("db", MigrateCommand)
 
 
 @app.route("/index")
@@ -27,4 +15,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run
+    manager.run
